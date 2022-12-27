@@ -13,9 +13,8 @@ local border_by_type = {
 }
 function Gui_fn(gui, id_fn)
     GuiIdPushString(gui, "CheatsSpellSpawner")
-    local win_x, win_y = tonumber(GlobalsGetValue("Copis_Cheats_win_x")) or 20, tonumber(GlobalsGetValue("Copis_Cheats_win_y")) or 75
     GuiConfigForNextWidget(gui, { 6 }, nil, 5)
-    GuiBeginScrollContainer(gui, 1, win_x, win_y, padding * columns, 100, false, 0, 0)
+    GuiBeginScrollContainer(gui, 1, Bar.x, Bar.y + 25, padding * columns, 100, false, 0, 0)
     -- Display Spells
     dofile_once( "data/scripts/gun/gun.lua" );
     local count = 0
