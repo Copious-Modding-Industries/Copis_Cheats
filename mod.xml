@@ -1,0 +1,15 @@
+<Mod
+	name="[v0.1] Copi's Cheat Menu"
+	description="Open in mod settings to use!"
+	tags="gameplay,cheats"
+	dont_upload_folders=".git,git"
+	ui_newgame_name="Cheat Menu Dummy Mode"
+	ui_newgame_description="Do not use!
+This is only a game mode due to an
+exploit allowing me to run code in modless runs."
+	ui_newgame_gfx_banner_bg="mods/copis_cheats/files/ui_gfx/game_mode/banner_cheatmenu.png"
+	ui_newgame_gfx_banner_fg="mods/copis_cheats/files/ui_gfx/game_mode/banner_cheatmenu_overlay.png"
+	request_no_api_restrictions="0" 
+	is_game_mode="1"
+> 
+</Mod>
