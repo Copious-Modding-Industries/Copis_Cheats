@@ -9,8 +9,8 @@ function Gui_fn(gui, id_fn)
     local x, y = 0, 0
     for index, teleport in ipairs(teleport_presets) do
 
-        x = math.floor(count % 5)
-        y = math.floor(count / 5)
+        x = math.floor(count % 6)
+        y = math.floor(count / 6)
 
         GuiConfigForNextWidget(gui, {6}, nil, 4.9)
         local lmb, rmb = GuiImageButton(gui, id_fn(), x * 16, y * 16, "", teleport.icon)

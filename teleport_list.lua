@@ -11,8 +11,7 @@ teleport_presets = {
             }
             EntitySetTransform(player, destination.x, destination.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/mines.png",
@@ -22,14 +21,13 @@ teleport_presets = {
             local x, y = EntityGetTransform(player)
             local pw = GetParallelWorldPosition(x, y)
             local dest = {
-                x=190,
-                y=1500
+                x=227,
+                y=-100
             }
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/excavationsite.png",
@@ -45,8 +43,7 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/snowcave.png",
@@ -62,8 +59,7 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/hiisi.png",
@@ -79,8 +75,7 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/jungle.png",
@@ -96,8 +91,7 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/vault.png",
@@ -113,8 +107,7 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/tota.png",
@@ -130,8 +123,21 @@ teleport_presets = {
             dest.x = dest.x  + pw * 35840
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
+        rmb_fn = function() end,
+    },
+    {
+        icon = "mods/Copis_Cheats/files/ui_gfx/teleports/boss_centipede.png",
+        name = "Kolmisilmä Arena",
+        tooltip = "Teleport to the final boss arena",
+        lmb_fn = function()
+            local dest = {
+                x=3500,
+                y=13060
+            }
+            EntitySetTransform(player, dest.x, dest.y)
+
         end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/sky.png",
@@ -148,8 +154,7 @@ teleport_presets = {
             EntitySetTransform(player, dest.x, dest.y)
 
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/hell.png",
@@ -161,8 +166,7 @@ teleport_presets = {
             local pw = GetParallelWorldPosition(x, y)
 
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/end.png",
@@ -174,8 +178,7 @@ teleport_presets = {
             local pw = GetParallelWorldPosition(x, y)
             EntitySetTransform(player, 6241 + pw * 35840, 15130)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/pw.png",
@@ -214,8 +217,7 @@ teleport_presets = {
             local pw = GetParallelWorldPosition(x, y)
             --EntitySetTransform(player, 6241 + pw * 35840, 15130)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/gold2.png",
@@ -227,8 +229,7 @@ teleport_presets = {
             local pw = GetParallelWorldPosition(x, y)
             --EntitySetTransform(player, 6241 + pw * 35840, 15130)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple1.png",
@@ -245,8 +246,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple2.png",
@@ -263,8 +263,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple3.png",
@@ -281,8 +280,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple3.png",
@@ -299,8 +297,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple4.png",
@@ -317,8 +314,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple5.png",
@@ -335,8 +331,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple6.png",
@@ -353,8 +348,7 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
     {
         icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple7.png",
@@ -371,7 +365,6 @@ teleport_presets = {
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
         end,
-        rmb_fn = function()
-        end,
+        rmb_fn = function() end,
     },
 }

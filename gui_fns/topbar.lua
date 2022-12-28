@@ -36,7 +36,7 @@ function Gui_fn(gui, id_fn)
         local clicked = GuiImageButton(gui, id_fn(), Bar.x + 28, Bar.y - 11, "", "mods/Copis_Cheats/files/ui_gfx/money.png")
         GuiTooltip(gui, "Wallet Editor", "[LMB] spell icons to spawn in-world,\n[RMB] spell icons to spawn in-inventory.")
         if clicked then
-            ModSettingSet("Copis_Cheats.Tab", "Spells")
+            ModSettingSet("Copis_Cheats.Tab", "Money")
         end
     end
     do

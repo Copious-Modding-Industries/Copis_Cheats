@@ -14,7 +14,7 @@ local border_by_type = {
 function Gui_fn(gui, id_fn)
     GuiIdPushString(gui, "CheatsSpellSpawner")
     GuiConfigForNextWidget(gui, { 6 }, nil, 5)
-    GuiBeginScrollContainer(gui, 1, Bar.x, Bar.y + 25, padding * columns, 100, false, 0, 0)
+    GuiBeginScrollContainer(gui, 1, Bar.x, Bar.y + 25, 100, 100, false, 0, 0)
     -- Display Spells
     dofile_once( "data/scripts/gun/gun.lua" );
     local count = 0
