@@ -196,15 +196,15 @@ teleport_presets = {
             return ("Current parallel world: %s %s\n[LMB] to travel 1 west,\n[RMB] to travel 1 east"):format(tostring(math.abs(pw)), world) end,
         lmb_fn = function()
             local x, y = EntityGetTransform(player)
-            local ng = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
-            GamePrint(tostring(ng))
-            EntitySetTransform(player, x - 35840, y)
+            local w, h = BiomeMapGetSize()
+            local pw_offset = GetParallelWorldPosition(x, y) * (512 * w)
+            EntitySetTransform(player, x - pw_offset, y)
         end,
         rmb_fn = function()
             local x, y = EntityGetTransform(player)
-            local ng = tonumber(SessionNumbersGetValue("NEW_GAME_PLUS_COUNT"))
-            GamePrint(tostring(ng))
-            EntitySetTransform(player, x + 35840, y)
+            local w, h = BiomeMapGetSize()
+            local pw_offset = GetParallelWorldPosition(x, y) * (512 * w)
+            EntitySetTransform(player, x + pw_offset, y)
         end,
     },
     {
@@ -364,6 +364,19 @@ teleport_presets = {
             }
             dest.x = dest.x + pw_offset
             EntitySetTransform(player, dest.x, dest.y)
+        end,
+        rmb_fn = function() end,
+    },
+    {
+        icon = "mods/Copis_Cheats/files/ui_gfx/teleports/temple7.png",
+        name = "Friend Cave",
+        tooltip = "Teleport to the friend cave",
+        lmb_fn = function()
+            SetRandomSeed( 24, 32 )
+			local fspot = Random( 1, 6 )
+			local fspots = { { 249, 153 }, { 261, 201 }, { 153, 141 }, { 87, 135 }, { 81, 219 }, { 153, 237 } }
+			local fdata = fspots[fspot]
+            EntitySetTransform(player, fdata[1], fdata[2])
         end,
         rmb_fn = function() end,
     },

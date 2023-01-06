@@ -35,49 +35,104 @@ function ModSettingsGui(gui, in_main_menu)
                 ui_name = "",
                 ui_fn = function(mod_id, gui, in_main_menu, im_id, setting)
                     if not in_main_menu then
-                        local cheats_enabled = ModSettingGetNextValue("Copis_Cheats.cheats_enabled")
-                        local lmb, rmb = GuiButton(gui, im_id, mod_setting_group_x_offset, 0, "[manage cheats]")
-                        GuiTooltip(gui, "Press this button to manage the in-game cheat menu.", "[LMB]: Enable Cheat Menu\n[RMB]: Disable Cheat Menu")
-                        if lmb then
-                            local player = EntityGetWithTag("player_unit")[1]
-                            EntityAddComponent2(player, "LuaComponent", {
-                                script_source_file = "mods/Copis_Cheats/cheats.lua",
-                                execute_on_added = false,
-                                execute_on_removed = false,
-                                execute_every_n_frame = 1,
-                                execute_times = 0,  -- infinite
-                                remove_after_executed = false,
-                                enable_coroutines = false,
-                            })
-                        end
-                        if rmb then
-                            GamePlaySound("data/audio/Desktop/ui.bank", "ui/button_click", GameGetCameraPos())
-                            local player = EntityGetWithTag("player_unit")[1]
-                            local cheatcomp = EntityGetFirstComponentIncludingDisabled(player, "LuaComponent", "Copis_Cheats")
-                            if cheatcomp ~= nil then
+                        local player = EntityGetWithTag("player_unit")[1]
+                        local cheatcomp = EntityGetFirstComponentIncludingDisabled(player, "LuaComponent", "Copis_Cheats")
+                        if cheatcomp ~= nil then
+                            GuiColorSetForNextWidget(gui, 0.4, 0.9, 0.4, 0.8)
+                            local lmb = GuiButton(gui, im_id, mod_setting_group_x_offset, 0, "[Disable Cheats]")
+                            if lmb then
+                                GamePlaySound("data/audio/Desktop/ui.bank", "ui/button_click", GameGetCameraPos())
                                 EntityRemoveComponent(player, cheatcomp)
                             end
+                        else
+                            GuiColorSetForNextWidget(gui, 0.9, 0.4, 0.4, 0.8)
+                            local lmb = GuiButton(gui, im_id, mod_setting_group_x_offset, 0, "[Enable Cheats]")
+                            if lmb then
+                                local cheatcomp_new = EntityAddComponent2(player, "LuaComponent", {
+                                    script_source_file = "mods/Copis_Cheats/cheats.lua",
+                                    execute_on_added = false,
+                                    execute_on_removed = false,
+                                    execute_every_n_frame = 1,
+                                    execute_times = 0,  -- infinite
+                                    remove_after_executed = false,
+                                    enable_coroutines = false,
+                                })
+                                ComponentAddTag(cheatcomp_new, "Copis_Cheats")
+                            end
                         end
+                        GuiTooltip(gui, "Press this button to manage the in-game cheat menu.", cheatcomp and "Cheats are currently enabled" or "Cheats are currently disabled")
                     end
                 end
             },
             {
-                id = "indicator",
-                ui_name = "",
-                ui_fn = function(mod_id, gui, in_main_menu, im_id, setting)
-                    if not in_main_menu then
-                        GuiLayoutBeginHorizontal(gui, 0, 0, false, 2, 0)
-                        local player = EntityGetWithTag("player_unit")[1]
-                        local has_cheats = false
-                        if EntityGetFirstComponentIncludingDisabled(player, "LuaComponent", "Copis_Cheats") ~= nil then
-                            has_cheats = true
+                category_id = "spawn_perks",
+                ui_name = "Perk Spawner",
+                ui_description = "Search and spawn perks",
+                foldable = true,
+                _folded = true,
+                settings =
+                {
+                    {
+                        id = "perksearch",
+                        ui_name = "",
+                        ui_fn = function(mod_id, gui, in_main_menu, im_id, setting)
+                            if not in_main_menu then
+                                GuiLayoutBeginHorizontal(gui, mod_setting_group_x_offset, 0, false, 0, 6)
+                                    GuiColorSetForNextWidget(gui, 1.0, 1.0, 1.0, 0.5)
+                                    GuiText(gui, 0, 0, "Search: ")
+                                    local query = tostring(ModSettingGetNextValue("Copis_Cheats.perkquery") or "")
+                                    local query_new = GuiTextInput(gui, im_id, 0, 0, query, 200, 100, "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890 ")
+                                    if query ~= query_new then
+                                        ModSettingSetNextValue("Copis_Cheats.perkquery", query_new, false)
+                                    end
+                                GuiLayoutEnd(gui)
+                            end
                         end
-                        GuiImage(gui, im_id, mod_setting_group_x_offset, 0, ("mods/Copis_Cheats/%s.png"):format(has_cheats and "bool_t" or "bool_f"))
-                        GuiColorSetForNextWidget(gui, has_cheats and 0.4 or 0.9, has_cheats and 0.9 or 0.4, 0.4, 0.8)
-                        GuiText(gui, mod_setting_group_x_offset, 0, ("cheats are %s"):format( has_cheats and "enabled" or "disabled"))
-                        GuiLayoutEnd(gui)
-                    end
-                end
+                    },
+                    {
+                        id = "perksmenu",
+                        ui_name = "",
+                        ui_fn = function(mod_id, gui, in_main_menu, im_id, setting)
+                            if not in_main_menu then
+                                dofile_once("data/scripts/perks/perk.lua")
+                                GuiLayoutBeginHorizontal(gui, 0, 0, false, 6, 6)
+                                    local count = 0
+                                    for _, perk in ipairs(perk_list) do
+                                        if GameTextGetTranslatedOrNot(perk.ui_name):upper():match((ModSettingGetNextValue("Copis_Cheats.perkquery") or ""):upper()) then
+                                            if count % 14 == 0 then
+                                                GuiLayoutEnd(gui)
+                                                GuiLayoutBeginHorizontal(gui, 0, 0, false, 6, 6)
+                                            end
+                                            GuiOptionsAddForNextWidget(gui, 28)
+                                            GuiOptionsAddForNextWidget(gui, 6)
+                                            local lmb, rmb = GuiImageButton(gui, im_id + #perk_list + count, 0, 0, "", perk.perk_icon)
+                                            GuiTooltip(gui, perk.ui_name, perk.ui_description)
+                                            if lmb then
+                                                local player = EntityGetWithTag("player_unit")[1]
+                                                local ex, ey = EntityGetTransform(player)
+                                                perk_spawn( ex, ey, perk.id, true)
+                                            end
+                                            if rmb then
+                                                local player = EntityGetWithTag("player_unit")[1]
+                                                local ex, ey = EntityGetTransform(player)
+                                                perk_spawn( ex, ey, perk.id, true)
+                                                perk_pickup(perk, player, EntityGetName(perk), false, false)
+                                            end
+                                            count = count + 1
+                                        end
+                                    end
+                                GuiLayoutEnd(gui)
+                            else
+                                GuiLayoutBeginHorizontal(gui, 0, 0, false, 5, 5)
+                                    GuiImage(gui, im_id, 0, 0, "data/ui_gfx/inventory/icon_warning.png", 1, 1, 1)
+                                    GuiColorSetForNextWidget(gui, 0.9, 0.4, 0.4, 0.9)
+                                    GuiText(gui, 0, 2, "Please open this menu in-game to spawn perks!")
+                                GuiLayoutEnd(gui)
+                            end
+                            mod_setting_tooltip(mod_id, gui, in_main_menu, setting)
+                        end
+                    },
+                },
             },
         }
     end

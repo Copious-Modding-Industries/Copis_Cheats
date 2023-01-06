@@ -1,4 +1,3 @@
-dofile_once("mods/Copis_Cheats/teleport_list.lua")
 local player = GetUpdatedEntityID()
 local wallet = EntityGetFirstComponentIncludingDisabled(player, "WalletComponent")
 local amounts = {
