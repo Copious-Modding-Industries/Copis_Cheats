@@ -7,7 +7,12 @@ function NewID()
     return id
 end
 
-Bar = Bar or { x = (ModSettingGet("Copis_Cheats.Bar_x") or 20), y = (ModSettingGet("Copis_Cheats.Bar_y") or 50), w = 108, h = 20}
+Bar = Bar or {
+    x = tonumber(ModSettingGet("Copis_Cheats.Bar_x") or 20),
+    y = tonumber(ModSettingGet("Copis_Cheats.Bar_y") or 50),
+    w = 108,
+    h = 20
+}
 
 Gui = Gui or GuiCreate()
 GuiStartFrame(Gui)

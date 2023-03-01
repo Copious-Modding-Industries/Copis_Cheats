@@ -25,7 +25,7 @@ function Gui_fn(gui, id_fn)
     end
 
     do
-        local lmb = GuiImageButton(gui, 5, 6, 24, "", "mods/Copis_Cheats/ui_gfx/save.png")
+        local lmb = GuiImageButton(gui, 5, 6, 24, "", "mods/Copis_Cheats/files/ui_gfx/save.png")
         if lmb then
             local x, y = EntityGetTransform(GetUpdatedEntityID())
             ModSettingSetNextValue("Copis_Cheats.tele_x", x, false)
@@ -35,7 +35,7 @@ function Gui_fn(gui, id_fn)
     end
 
     do
-        local lmb = GuiImageButton(gui, 6, 6, 34, "", "mods/Copis_Cheats/ui_gfx/load.png")
+        local lmb = GuiImageButton(gui, 6, 6, 34, "", "mods/Copis_Cheats/files/ui_gfx/load.png")
         if lmb then
             local x, y = EntityGetTransform(GetUpdatedEntityID())
             local new_x = ModSettingGetNextValue("Copis_Cheats.tele_x") or x
